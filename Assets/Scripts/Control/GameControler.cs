@@ -24,7 +24,6 @@ public class GameControler : Singleton<GameControler>
     {
         TimeRemaining = maxTime;
         PickupsGathered = 0;
-        CreatePickup();
         Player.Instance.Start();
 
     }

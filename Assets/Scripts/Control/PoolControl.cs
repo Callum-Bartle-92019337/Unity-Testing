@@ -36,11 +36,11 @@ public class PoolControl : Singleton<PoolControl>
 
     public GameObject SpawnFromPool(string tag, Vector3 position, Quaternion rotation)
     {
-        if (!poolDictionary.ContainsKey(tag))
-        {
-            Debug.LogWarning(tag + " Not in Pools list!");
-            return null;
-        }
+        //if (!poolDictionary.ContainsKey(tag))
+        //{
+        //    Debug.LogWarning(tag + " Not in Pools list!");
+        //    return null;
+        //}
 
         GameObject obj = poolDictionary[tag].Dequeue();
 
@@ -48,8 +48,8 @@ public class PoolControl : Singleton<PoolControl>
         obj.transform.position = position;
         obj.transform.rotation = rotation;
 
-        IpooledObject objP = obj.GetComponent<IpooledObject>();
-        if (objP != null) { objP.OnObjectSpawn(); }
+        IpooledObject objPooled = obj.GetComponent<IpooledObject>();
+        if (objPooled != null) { objPooled.OnObjectSpawn(); }
 
         poolDictionary[tag].Enqueue(obj);
 
